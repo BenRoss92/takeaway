@@ -7,12 +7,12 @@ class Order
 
   def initialize(menu = Menu.new, delivery_class = Delivery)
     @menu = menu
-    @basket = {}
     @delivery_class = delivery_class
+    @basket = Hash.new(0)
   end
 
-  def add_order(item,quantity)
-    @basket[item] = quantity
+  def add_order(item, quantity = 1)
+    @basket[item] += quantity
   end
 
   def total
