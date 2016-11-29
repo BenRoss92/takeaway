@@ -32,7 +32,7 @@ class Order
 
   def checkout(payment)
     if payment == total
-      @delivery_class.new(@basket)
+      @delivery_class.new(@basket).send_sms
     else
       raise "Invalid payment amount"
     end
