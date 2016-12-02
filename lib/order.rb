@@ -3,7 +3,7 @@ require_relative 'delivery'
 
 class Order
 
-  attr_reader :menu, :basket
+  attr_reader :menu, :basket, :summary
 
   def initialize(menu = Menu.new, delivery_class = Delivery)
     @menu = menu
@@ -32,7 +32,7 @@ class Order
 
   def checkout(payment)
     if payment == total
-      @delivery_class.new(@basket).send_sms
+      @delivery_class.new(summary).send_sms
     else
       raise "Invalid payment amount"
     end
