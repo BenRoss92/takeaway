@@ -1,18 +1,19 @@
 require 'delivery'
 
 describe Delivery do
-  # test that .checkout(payment)
-  # is called on double of order
-  # and returns delivery_class.new(@basket)
-
-  subject(:delivery) { described_class.new }
-  # double the order
+  let(:summary) { double :summary }
+  subject(:delivery) { described_class.new(:summary) }
+  let(:delivery_class) { double :delivery_class }
+  let(:payment) { double :payment }
   let(:order) { double :order }
-  # stub .checkout order method
 
-  xit "receives basket items after correct payment" do
-    # allow delivery to recieve :new with @basket
-    allow(:order)
+  it "receives basket items after correct payment" do
+    allow(order).to receive(:checkout) { payment }
+    allow(delivery_class).to receive(:new).with(summary)
+    allow(delivery).to receive(:send_sms)
+    order.checkout(payment)
+    expect(delivery).to receive(:send_sms)
+    delivery.send_sms
   end
 
 end

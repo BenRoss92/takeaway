@@ -28,9 +28,9 @@ describe Order do
   end
 
   xit 'starts a delivery if payment matches total' do
-    allow(delivery_class).to receive(:new)
+    allow(delivery_class).to receive(:new) { :delivery }
     order.checkout(33)
-    expect(delivery_class).to receive(:new).and_return(delivery)
+    expect(delivery).to have_received(:send_sms)
   end
 
 end

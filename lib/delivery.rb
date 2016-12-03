@@ -14,12 +14,12 @@ class Delivery
   end
 
   def send_sms
-    # @client.messages.create(
-    #   from: ENV["TWILIO_NUMBER"],
-    #   to: ENV["MY_NUMBER"],
-    #   body: "Thank you! Your order was placed and will be delivered before #{delivery_time}"
-    # )
-    "Thank you! Your order was placed - #{@summary} - and will be delivered before #{delivery_time}"
+    @client.messages.create(
+      from: ENV["TWILIO_NUMBER"],
+      to: ENV["MY_NUMBER"],
+      body: "Thank you! Your order was placed and will be delivered before
+      #{delivery_time} - #{@summary}"
+    )
   end
 
   private
