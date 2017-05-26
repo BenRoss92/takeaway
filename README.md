@@ -15,30 +15,31 @@ MY_NUMBER=EnterYourMobileNumberHere
 
 In the command line, do the following:
 
-```
+```ruby
 # Load order.rb file:
 $ irb -r './lib/order.rb'
 
 # Make a new order:
 order = Order.new
 
-# Add dishes from menu into order:
+# Add dishes from the menu to your order:
 order.add_order(:burger,3)
 order.add_order(:fries,2)
 
 # View your current basket of items:
 order.basket
 
-# Calculate total price of basket items:
+# Calculate the total price of your basket:
 order.total
 
-# See a summary of your order:
+# View a summary of your order:
 order.summary
 
-# Enter your correct total amount when checking out to place a delivery (e.g. if total is 32):
+# To place a delivery, enter the correct total basket price into `checkout()` (e.g. if your total basket price is 32, enter '32 into `checkout()`):
 order.checkout(32)
+# N.B. If the amount entered is incorrect, an error will be raised and the order will not be placed. 
 
-## If total amount was correct, you should receive a text containing a summary of your order and a delivery time estimate:
+# If the total amount was correct, you should receive a text message to your registered Twilio phone number containing a summary of your order and a delivery time estimate:
 # e.g. "Thank you! Your order was placed and will be delivered before
 # {YOUR DELIVERY TIME} - #{YOUR ORDER SUMMARY}"
 ```
